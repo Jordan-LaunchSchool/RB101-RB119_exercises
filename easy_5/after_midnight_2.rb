@@ -31,8 +31,7 @@ MINUTES_IN_ONE_HOUR = 60
 MINUTES_IN_ONE_DAY = 24 * MINUTES_IN_ONE_HOUR
 
 def convert_time_to_mintues(time_string)
-	hours = time_string[0, 2].to_i
-	minutes = time_string[-2, 2].to_i
+	hours, minutes = time_string.split(':').map(&:to_i)
 	(hours * MINUTES_IN_ONE_HOUR) + minutes
 end
 
@@ -44,7 +43,7 @@ end
 
 def after_midnight(time_string)
 	total_mintues = convert_time_to_mintues(time_string) 
-	total_mintues >= MINUTES_IN_ONE_DAY ? 0 : total_mintues
+	total_mintues == MINUTES_IN_ONE_DAY ? 0 : total_mintues
 end
 
 
