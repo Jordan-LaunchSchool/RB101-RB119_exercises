@@ -13,8 +13,12 @@ ALGO:
 	- return the resulting array
 =end
 
+# def merge(arr1, arr2)
+# 	(arr1 + arr2).uniq
+# end
+
 def merge(arr1, arr2)
-	(arr1 + arr2).uniq
+	arr1 | arr2
 end
 
 

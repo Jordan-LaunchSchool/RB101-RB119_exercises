@@ -1,47 +1,51 @@
 =begin
-	- write a method that takes an array
-	- have the method return two arrays
-	that count the first half and the second half of the array respectively
-	- if the original array contains an odd number of the elements
-	- the middle element should be placed in the first half of the array
+	- write a method that takes an array as an argument
+	- have the method return two arrays, as a pair of nested arrays
+	- if the original array cpntains an odd number of elements, the middle
+		element should be placed in the first half of the array
 
-	EXAMPLES:
-	halvsies([1, 2, 3, 4]) == [[1, 2], [3, 4]]
-	[0..1][2..-1] 4 / 2 == 2
-	halvsies([1, 5, 2, 4, 3]) == [[1, 5, 2], [4, 3]]
-	[0..2][3..-1] 5 / 2 == 2
-	halvsies([5]) == [[5], []]
-	[0, 1][0, 0]
-	halvsies([]) == [[], []]
+		(5 / 2.0) => 3
+EXAMPLES:
+halvsies([1, 2, 3, 4]) == [[1, 2], [3, 4]]
+ => 4 / 2 => 2 (middle index) => for middle index times => arr.shift => 1
 
-	ALGO:
-		- define a method that takes an array
-		- create a first elemet array thats an empty array
-		- create a second half elements thats an empty array
-		- create an empty result array with first ele and second element
-		- if the array size is equal to or less than 1
-				- return the result array with the input array as the first element
+halvsies([1, 5, 2, 4, 3]) == [[1, 5, 2], [4, 3]]
+halvsies([5]) == [[5], []]
+halvsies([]) == [[], []]
 
-		- create a middle index that is equal to the array size / 2
-		even => 4 / 2 == 2 if the array size is even, minus - 1
-		odd => 5 / 2 == 2 
-		- return the result 
-		
+ALGO:
+	- define a method that takes an array
+
+	- create an empty array called first half
+	- create an empty array called second half have it equal to a duplicate of the input array
+	- create a middle index integer that is equal to the array size divided by 2.0 and rounded
+	- for the middle index variable times do
+		- remove the first element of the array second half array and add it to the first half array variable
 
 
-
+	- return a nested result array containing the first half and second half array variables
+	
 =end
 
+# def halvsies(input_array)
+# 	first_half = []
+# 	second_half = input_array.dup
+# 	middle_index = (input_array.size / 2.0).round
+# 	middle_index.times do 
+# 		first_half << second_half.shift
+# 	end
+
+# 	[first_half, second_half]
+# end
+
 def halvsies(input_array)
-	result = []
-	middle_index = input_array.size / 2
-	middle_index -= 1 if input_array.size.even?
-	result[0] = input_array[0..middle_index]
-	result[1] = input_array[(middle_index + 1..-1)]
-	result
+	middle_index = (input_array.size / 2.0).round
+	first_half = input_array[0, middle_index]
+	second_half = input_array[middle_index, (input_array.size - middle_index)]
+	[first_half, second_half]
 end
 
-p halvsies([1, 2, 3, 4]) == [[1, 2], [3, 4]]
+
 p halvsies([1, 2, 3, 4]) == [[1, 2], [3, 4]]
 p halvsies([1, 5, 2, 4, 3]) == [[1, 5, 2], [4, 3]]
 p halvsies([5]) == [[5], []]
